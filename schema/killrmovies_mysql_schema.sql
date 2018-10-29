@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.20-log)
 # Database: killrmovies
-# Generation Time: 2018-10-29 16:15:42 +0000
+# Generation Time: 2018-10-29 20:52:21 +0000
 # ************************************************************
 
 
@@ -20,29 +20,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table _movie_guid
+# Dump of table _movie_uuid
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `_movie_guid`;
+DROP TABLE IF EXISTS `_movie_uuid`;
 
-CREATE TABLE `_movie_guid` (
+CREATE TABLE `_movie_uuid` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `movie_id` int(11) NOT NULL,
-  `guid` varchar(250) NOT NULL DEFAULT '',
+  `uuid` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
-# Dump of table _user_guid
+# Dump of table _user_uuid
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `_user_guid`;
+DROP TABLE IF EXISTS `_user_uuid`;
 
-CREATE TABLE `_user_guid` (
+CREATE TABLE `_user_uuid` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `guid` varchar(250) NOT NULL DEFAULT '',
+  `uuid` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

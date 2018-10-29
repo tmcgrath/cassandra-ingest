@@ -1,0 +1,1914 @@
+{
+  "pipelineConfig" : {
+    "schemaVersion" : 6,
+    "version" : 10,
+    "pipelineId" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
+    "title" : "RDBMS_to_Cassandra_Bulk_Load",
+    "description" : "",
+    "uuid" : "7ad49fbf-be2d-4dc4-93af-70b78365c2ce",
+    "configuration" : [ {
+      "name" : "executionMode",
+      "value" : "STANDALONE"
+    }, {
+      "name" : "edgeHttpUrl",
+      "value" : "http://localhost:18633"
+    }, {
+      "name" : "deliveryGuarantee",
+      "value" : "AT_LEAST_ONCE"
+    }, {
+      "name" : "testOriginStage",
+      "value" : "streamsets-datacollector-dev-lib::com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource::3"
+    }, {
+      "name" : "startEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "stopEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "shouldRetry",
+      "value" : true
+    }, {
+      "name" : "retryAttempts",
+      "value" : -1
+    }, {
+      "name" : "memoryLimit",
+      "value" : "${jvm:maxMemoryMB() * 0.85}"
+    }, {
+      "name" : "memoryLimitExceeded",
+      "value" : "LOG"
+    }, {
+      "name" : "notifyOnStates",
+      "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
+    }, {
+      "name" : "emailIDs",
+      "value" : [ ]
+    }, {
+      "name" : "constants",
+      "value" : [ {
+        "key" : "JDBC_DRIVER",
+        "value" : "com.mysql.jdbc.Driver"
+      }, {
+        "key" : "JDBC_CON_STRING",
+        "value" : "jdbc:mysql://localhost/killrmovies?autoReconnect=true"
+      }, {
+        "key" : "USER_TEST_ONLY",
+        "value" : "ss"
+      }, {
+        "key" : "PW_TEST_ONLY",
+        "value" : "ss"
+      }, {
+        "key" : "CASS_SCHEMA",
+        "value" : "killrmovies"
+      } ]
+    }, {
+      "name" : "badRecordsHandling",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "errorRecordPolicy",
+      "value" : "ORIGINAL_RECORD"
+    }, {
+      "name" : "statsAggregatorStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_StatsDpmDirectlyDTarget::1"
+    }, {
+      "name" : "workerCount",
+      "value" : 0
+    }, {
+      "name" : "clusterSlaveMemory",
+      "value" : 2048
+    }, {
+      "name" : "clusterSlaveJavaOpts",
+      "value" : "-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dlog4j.debug"
+    }, {
+      "name" : "clusterLauncherEnv",
+      "value" : [ ]
+    }, {
+      "name" : "mesosDispatcherURL",
+      "value" : null
+    }, {
+      "name" : "logLevel",
+      "value" : "INFO"
+    }, {
+      "name" : "hdfsS3ConfDir",
+      "value" : null
+    }, {
+      "name" : "rateLimit",
+      "value" : 0
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
+    }, {
+      "name" : "shouldCreateFailureSnapshot",
+      "value" : true
+    }, {
+      "name" : "runnerIdleTIme",
+      "value" : 60
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "sparkConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "amazonEMRConfig.userRegion",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.userRegionCustom",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.accessKey",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.secretKey",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.s3StagingUri",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.provisionNewCluster",
+      "value" : false
+    }, {
+      "name" : "amazonEMRConfig.clusterId",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.clusterPrefix",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.terminateCluster",
+      "value" : false
+    }, {
+      "name" : "amazonEMRConfig.loggingEnabled",
+      "value" : true
+    }, {
+      "name" : "amazonEMRConfig.s3LogUri",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.enableEMRDebugging",
+      "value" : true
+    }, {
+      "name" : "amazonEMRConfig.serviceRole",
+      "value" : "EMR_DefaultRole"
+    }, {
+      "name" : "amazonEMRConfig.jobFlowRole",
+      "value" : "EMR_EC2_DefaultRole"
+    }, {
+      "name" : "amazonEMRConfig.visibleToAllUsers",
+      "value" : true
+    }, {
+      "name" : "amazonEMRConfig.ec2SubnetId",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.masterSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.slaveSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.instanceCount",
+      "value" : 2
+    }, {
+      "name" : "amazonEMRConfig.masterInstanceType",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.masterInstanceTypeCustom",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.slaveInstanceType",
+      "value" : null
+    }, {
+      "name" : "amazonEMRConfig.slaveInstanceTypeCustom",
+      "value" : null
+    } ],
+    "uiInfo" : {
+      "previewConfig" : {
+        "previewSource" : "CONFIGURED_SOURCE",
+        "batchSize" : 10,
+        "timeout" : 30000,
+        "writeToDestinations" : false,
+        "executeLifecycleEvents" : false,
+        "showHeader" : true,
+        "showFieldType" : true,
+        "rememberMe" : false
+      }
+    },
+    "fragments" : [ ],
+    "stages" : [ {
+      "instanceName" : "JDBCMultitableConsumer_01",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_table_TableJdbcDSource",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "tableJdbcConfigBean.tableConfigs",
+        "value" : [ {
+          "tablePattern" : "users",
+          "overrideDefaultOffsetColumns" : false,
+          "offsetColumns" : [ ],
+          "offsetColumnToInitialOffsetValue" : [ ],
+          "enableNonIncremental" : false,
+          "partitioningMode" : "DISABLED",
+          "partitionSize" : "1000000",
+          "maxNumActivePartitions" : -1,
+          "schema" : "killrmovies"
+        }, {
+          "tablePattern" : "movies",
+          "overrideDefaultOffsetColumns" : false,
+          "offsetColumns" : [ ],
+          "offsetColumnToInitialOffsetValue" : [ ],
+          "enableNonIncremental" : false,
+          "partitioningMode" : "DISABLED",
+          "partitionSize" : "1000000",
+          "maxNumActivePartitions" : -1,
+          "schema" : "killrmovies"
+        } ]
+      }, {
+        "name" : "tableJdbcConfigBean.numberOfThreads",
+        "value" : 1
+      }, {
+        "name" : "tableJdbcConfigBean.batchTableStrategy",
+        "value" : "SWITCH_TABLES"
+      }, {
+        "name" : "tableJdbcConfigBean.numberOfBatchesFromRs",
+        "value" : -1
+      }, {
+        "name" : "tableJdbcConfigBean.resultCacheSize",
+        "value" : -1
+      }, {
+        "name" : "tableJdbcConfigBean.timeZoneID",
+        "value" : "UTC"
+      }, {
+        "name" : "tableJdbcConfigBean.quoteChar",
+        "value" : "NONE"
+      }, {
+        "name" : "tableJdbcConfigBean.tableOrderStrategy",
+        "value" : "NONE"
+      }, {
+        "name" : "tableJdbcConfigBean.unknownTypeAction",
+        "value" : "STOP_PIPELINE"
+      }, {
+        "name" : "tableJdbcConfigBean.fetchSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.queriesPerSecond",
+        "value" : "10"
+      }, {
+        "name" : "commonSourceConfigBean.maxBatchSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "commonSourceConfigBean.newTableQueryInterval",
+        "value" : "${10 * SECONDS}"
+      }, {
+        "name" : "commonSourceConfigBean.noMoreDataEventDelay",
+        "value" : 0
+      }, {
+        "name" : "hikariConfigBean.connectionString",
+        "value" : "${JDBC_CON_STRING}"
+      }, {
+        "name" : "hikariConfigBean.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.username",
+        "value" : "${USER_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.password",
+        "value" : "${PW_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ { } ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "${JDBC_DRIVER}"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "JDBC Multitable Consumer 1",
+        "xPos" : 60,
+        "yPos" : 50,
+        "stageType" : "SOURCE"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "JDBCMultitableConsumer_01OutputLane15408263673960" ],
+      "eventLanes" : [ "JDBCMultitableConsumer_01_EventLane" ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_01OutputLane1540827112300",
+          "predicate" : "${record:attribute('jdbc.tables') == 'movies'}"
+        }, {
+          "outputLane" : "StreamSelector_01OutputLane1540826427290",
+          "predicate" : "${record:attribute('jdbc.tables') == 'users'}"
+        }, {
+          "outputLane" : "StreamSelector_01OutputLane1540826378800",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stream Selector 1",
+        "xPos" : 280,
+        "yPos" : 140,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCMultitableConsumer_01OutputLane15408263673960" ],
+      "outputLanes" : [ "StreamSelector_01OutputLane1540827112300", "StreamSelector_01OutputLane1540826427290", "StreamSelector_01OutputLane1540826378800" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Not User or Movie - No Default Needed",
+        "xPos" : 500,
+        "yPos" : 300,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_01OutputLane1540826378800" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "JDBCLookup_03",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "query",
+        "value" : "select * from _movie_uuid where movie_id = ${record:value('/id')}"
+      }, {
+        "name" : "columnMappings",
+        "value" : [ {
+          "dataType" : "USE_COLUMN_TYPE"
+        } ]
+      }, {
+        "name" : "multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "hikariConfigBean.connectionString",
+        "value" : "${JDBC_CON_STRING}"
+      }, {
+        "name" : "hikariConfigBean.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.username",
+        "value" : "${USER_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.password",
+        "value" : "${PW_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ { } ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "${JDBC_DRIVER}"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "cacheConfig.enabled",
+        "value" : true
+      }, {
+        "name" : "cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "cacheConfig.evictionPolicyType",
+        "value" : "EXPIRE_AFTER_WRITE"
+      }, {
+        "name" : "cacheConfig.expirationTime",
+        "value" : 100
+      }, {
+        "name" : "cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "cacheConfig.retryOnCacheMiss",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Movie  UUID Lookup and Cache",
+        "xPos" : 500,
+        "yPos" : 40,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "StreamSelector_01OutputLane1540827112300" ],
+      "outputLanes" : [ "JDBCLookup_03OutputLane15408448157220" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "JDBCLookup_04",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "query",
+        "value" : "select * from _user_uuid where user_id = ${record:value('/id')}"
+      }, {
+        "name" : "columnMappings",
+        "value" : [ {
+          "dataType" : "USE_COLUMN_TYPE"
+        } ]
+      }, {
+        "name" : "multipleValuesBehavior",
+        "value" : "FIRST_ONLY"
+      }, {
+        "name" : "missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "hikariConfigBean.connectionString",
+        "value" : "${JDBC_CON_STRING}"
+      }, {
+        "name" : "hikariConfigBean.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.username",
+        "value" : "${USER_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.password",
+        "value" : "${PW_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ { } ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "${JDBC_DRIVER}"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "cacheConfig.enabled",
+        "value" : false
+      }, {
+        "name" : "cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "cacheConfig.evictionPolicyType",
+        "value" : null
+      }, {
+        "name" : "cacheConfig.expirationTime",
+        "value" : 1
+      }, {
+        "name" : "cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "cacheConfig.retryOnCacheMiss",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "User UUID Lookup and Cache",
+        "xPos" : 500,
+        "yPos" : 170,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "StreamSelector_01OutputLane1540826427290" ],
+      "outputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "JDBCLookup_02",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "query",
+        "value" : "select r.rating, m.uuid as movie_uuid from ratings r \n\tinner join _movie_uuid m on r.movie_id = m.movie_id \n    where r.user_id = ${record:value('/id')}"
+      }, {
+        "name" : "columnMappings",
+        "value" : [ {
+          "dataType" : "USE_COLUMN_TYPE"
+        } ]
+      }, {
+        "name" : "multipleValuesBehavior",
+        "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+      }, {
+        "name" : "missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "hikariConfigBean.connectionString",
+        "value" : "${JDBC_CON_STRING}"
+      }, {
+        "name" : "hikariConfigBean.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.username",
+        "value" : "${USER_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.password",
+        "value" : "${PW_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ { } ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "${JDBC_DRIVER}"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "cacheConfig.enabled",
+        "value" : false
+      }, {
+        "name" : "cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "cacheConfig.evictionPolicyType",
+        "value" : null
+      }, {
+        "name" : "cacheConfig.expirationTime",
+        "value" : 1
+      }, {
+        "name" : "cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "cacheConfig.retryOnCacheMiss",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "User Ratings Lookups",
+        "xPos" : 726.7716674804688,
+        "yPos" : 283.7637634277344,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
+      "outputLanes" : [ "JDBCLookup_02OutputLane15408271554290" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_03",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_03OutputLane1540846631681",
+          "predicate" : "${record:value('/rating') != NULL}"
+        }, {
+          "outputLane" : "StreamSelector_03OutputLane1540845740169",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Any ratings?",
+        "xPos" : 935.93701171875,
+        "yPos" : 283.76377868652344,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCLookup_02OutputLane15408271554290" ],
+      "outputLanes" : [ "StreamSelector_03OutputLane1540846631681", "StreamSelector_03OutputLane1540845740169" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "No Ratings",
+        "xPos" : 1161.3543701171875,
+        "yPos" : 344.1732482910156,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_03OutputLane1540845740169" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "JDBCLookup_01",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "query",
+        "value" : "select t.tag, m.uuid as movie_uuid from tags t \n\tinner join _movie_uuid m on t.movie_id = m.movie_id \n    where t.user_id = ${record:value('/id')}"
+      }, {
+        "name" : "columnMappings",
+        "value" : [ {
+          "dataType" : "USE_COLUMN_TYPE"
+        } ]
+      }, {
+        "name" : "multipleValuesBehavior",
+        "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+      }, {
+        "name" : "missingValuesBehavior",
+        "value" : "PASS_RECORD_ON"
+      }, {
+        "name" : "maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "hikariConfigBean.connectionString",
+        "value" : "${JDBC_CON_STRING}"
+      }, {
+        "name" : "hikariConfigBean.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.username",
+        "value" : "${USER_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.password",
+        "value" : "${PW_TEST_ONLY}"
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ { } ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "${JDBC_DRIVER}"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "cacheConfig.enabled",
+        "value" : true
+      }, {
+        "name" : "cacheConfig.maxSize",
+        "value" : -1
+      }, {
+        "name" : "cacheConfig.evictionPolicyType",
+        "value" : "EXPIRE_AFTER_ACCESS"
+      }, {
+        "name" : "cacheConfig.expirationTime",
+        "value" : 1
+      }, {
+        "name" : "cacheConfig.timeUnit",
+        "value" : "SECONDS"
+      }, {
+        "name" : "cacheConfig.retryOnCacheMiss",
+        "value" : true
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "User Movie Tags Lookup",
+        "xPos" : 725.4172973632812,
+        "yPos" : 419.8897705078125,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
+      "outputLanes" : [ "JDBCLookup_01OutputLane15408264711340" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "StreamSelector_02",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "lanePredicates",
+        "value" : [ {
+          "outputLane" : "StreamSelector_02OutputLane1540845244681",
+          "predicate" : "${record:value('/tag') != NULL}"
+        }, {
+          "outputLane" : "StreamSelector_02OutputLane1540845205815",
+          "predicate" : "default"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Any Tags?",
+        "xPos" : 927.81103515625,
+        "yPos" : 526.8818359375,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCLookup_01OutputLane15408264711340" ],
+      "outputLanes" : [ "StreamSelector_02OutputLane1540845244681", "StreamSelector_02OutputLane1540845205815" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Trash_04",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "No Tags",
+        "xPos" : 1176.2520751953125,
+        "yPos" : 705.1181030273438,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1540845205815" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Cassandra_01",
+      "library" : "streamsets-datacollector-cassandra_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_cassandra_CassandraDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "conf.contactPoints",
+        "value" : [ "localhost" ]
+      }, {
+        "name" : "conf.port",
+        "value" : 9042
+      }, {
+        "name" : "conf.authProviderOption",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.protocolVersion",
+        "value" : "V4"
+      }, {
+        "name" : "conf.compression",
+        "value" : "LZ4"
+      }, {
+        "name" : "conf.batchType",
+        "value" : "LOGGED"
+      }, {
+        "name" : "conf.maxBatchSize",
+        "value" : 65535
+      }, {
+        "name" : "conf.qualifiedTableName",
+        "value" : "${CASS_SCHEMA}.movies"
+      }, {
+        "name" : "conf.columnNames",
+        "value" : [ {
+          "field" : "/uuid",
+          "columnName" : "id"
+        }, {
+          "field" : "/name",
+          "columnName" : "name"
+        }, {
+          "field" : "/description",
+          "columnName" : "description"
+        } ]
+      }, {
+        "name" : "conf.username",
+        "value" : null
+      }, {
+        "name" : "conf.password",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.trustStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Insert Movies Table",
+        "xPos" : 720,
+        "yPos" : 40,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "JDBCLookup_03OutputLane15408448157220" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Cassandra_02",
+      "library" : "streamsets-datacollector-cassandra_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_cassandra_CassandraDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "conf.contactPoints",
+        "value" : [ "localhost" ]
+      }, {
+        "name" : "conf.port",
+        "value" : 9042
+      }, {
+        "name" : "conf.authProviderOption",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.protocolVersion",
+        "value" : "V4"
+      }, {
+        "name" : "conf.compression",
+        "value" : "LZ4"
+      }, {
+        "name" : "conf.batchType",
+        "value" : "LOGGED"
+      }, {
+        "name" : "conf.maxBatchSize",
+        "value" : 65535
+      }, {
+        "name" : "conf.qualifiedTableName",
+        "value" : "${CASS_SCHEMA}.users"
+      }, {
+        "name" : "conf.columnNames",
+        "value" : [ {
+          "field" : "/uuid",
+          "columnName" : "id"
+        }, {
+          "field" : "/first_name",
+          "columnName" : "first_name"
+        }, {
+          "field" : "/last_name",
+          "columnName" : "last_name"
+        }, {
+          "field" : "/email",
+          "columnName" : "email"
+        } ]
+      }, {
+        "name" : "conf.username",
+        "value" : null
+      }, {
+        "name" : "conf.password",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.trustStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Insert into Users",
+        "xPos" : 721.6666870117188,
+        "yPos" : 168.3333282470703,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Cassandra_03",
+      "library" : "streamsets-datacollector-cassandra_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_cassandra_CassandraDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "conf.contactPoints",
+        "value" : [ "localhost" ]
+      }, {
+        "name" : "conf.port",
+        "value" : 9042
+      }, {
+        "name" : "conf.authProviderOption",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.protocolVersion",
+        "value" : "V4"
+      }, {
+        "name" : "conf.compression",
+        "value" : "LZ4"
+      }, {
+        "name" : "conf.batchType",
+        "value" : "LOGGED"
+      }, {
+        "name" : "conf.maxBatchSize",
+        "value" : 65535
+      }, {
+        "name" : "conf.qualifiedTableName",
+        "value" : "${CASS_SCHEMA}.movie_ratings_by_user"
+      }, {
+        "name" : "conf.columnNames",
+        "value" : [ {
+          "field" : "/uuid",
+          "columnName" : "user_id"
+        }, {
+          "field" : "/movie_uuid",
+          "columnName" : "movie_id"
+        }, {
+          "field" : "/rating",
+          "columnName" : "rating"
+        } ]
+      }, {
+        "name" : "conf.username",
+        "value" : null
+      }, {
+        "name" : "conf.password",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.trustStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Insert into Movie Ratings By User",
+        "xPos" : 1165.93701171875,
+        "yPos" : 227.0971221923828,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_03OutputLane1540846631681" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Cassandra_04",
+      "library" : "streamsets-datacollector-cassandra_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_cassandra_CassandraDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "conf.contactPoints",
+        "value" : [ "localhost" ]
+      }, {
+        "name" : "conf.port",
+        "value" : 9042
+      }, {
+        "name" : "conf.authProviderOption",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.protocolVersion",
+        "value" : "V4"
+      }, {
+        "name" : "conf.compression",
+        "value" : "LZ4"
+      }, {
+        "name" : "conf.batchType",
+        "value" : "LOGGED"
+      }, {
+        "name" : "conf.maxBatchSize",
+        "value" : 65535
+      }, {
+        "name" : "conf.qualifiedTableName",
+        "value" : "${CASS_SCHEMA}.movies_by_tag"
+      }, {
+        "name" : "conf.columnNames",
+        "value" : [ {
+          "field" : "/tag",
+          "columnName" : "tag"
+        }, {
+          "field" : "/uuid",
+          "columnName" : "user_id"
+        }, {
+          "field" : "/movie_uuid",
+          "columnName" : "movie_id"
+        } ]
+      }, {
+        "name" : "conf.username",
+        "value" : null
+      }, {
+        "name" : "conf.password",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.trustStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Insert into Movies By Tag table",
+        "xPos" : 1167.287841796875,
+        "yPos" : 460.9793701171875,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "Cassandra_05",
+      "library" : "streamsets-datacollector-cassandra_3-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_cassandra_CassandraDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "conf.contactPoints",
+        "value" : [ "localhost" ]
+      }, {
+        "name" : "conf.port",
+        "value" : 9042
+      }, {
+        "name" : "conf.authProviderOption",
+        "value" : "NONE"
+      }, {
+        "name" : "conf.protocolVersion",
+        "value" : "V4"
+      }, {
+        "name" : "conf.compression",
+        "value" : "LZ4"
+      }, {
+        "name" : "conf.batchType",
+        "value" : "LOGGED"
+      }, {
+        "name" : "conf.maxBatchSize",
+        "value" : 65535
+      }, {
+        "name" : "conf.qualifiedTableName",
+        "value" : "${CASS_SCHEMA}.movie_tags_by_user"
+      }, {
+        "name" : "conf.columnNames",
+        "value" : [ {
+          "field" : "/movie_uuid",
+          "columnName" : "movie_id"
+        }, {
+          "field" : "/uuid",
+          "columnName" : "user_id"
+        }, {
+          "field" : "/tag",
+          "columnName" : "tag"
+        } ]
+      }, {
+        "name" : "conf.username",
+        "value" : null
+      }, {
+        "name" : "conf.password",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.tlsEnabled",
+        "value" : false
+      }, {
+        "name" : "conf.tlsConfig.keyStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.keyStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.trustStoreFilePath",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreType",
+        "value" : "JKS"
+      }, {
+        "name" : "conf.tlsConfig.trustStorePassword",
+        "value" : null
+      }, {
+        "name" : "conf.tlsConfig.trustStoreAlgorithm",
+        "value" : "SunX509"
+      }, {
+        "name" : "conf.tlsConfig.useDefaultProtocols",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.protocols",
+        "value" : [ ]
+      }, {
+        "name" : "conf.tlsConfig.useDefaultCiperSuites",
+        "value" : true
+      }, {
+        "name" : "conf.tlsConfig.cipherSuites",
+        "value" : [ ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Insert into Movie Tags by User",
+        "xPos" : 1172.202166933002,
+        "yPos" : 581.0397597804214,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "PipelineFinisherExecutor_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_executor_finishpipeline_PipelineFinisherDExecutor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ "${record:attribute('sdc.event.type') == 'no-more-data'}" ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stop Pipeline When Finished",
+        "xPos" : 280,
+        "yPos" : 290,
+        "stageType" : "EXECUTOR"
+      },
+      "inputLanes" : [ "JDBCMultitableConsumer_01_EventLane" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "errorStage" : {
+      "instanceName" : "Discard_ErrorStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Error Records - Discard",
+        "xPos" : 531,
+        "yPos" : 50,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    },
+    "info" : {
+      "pipelineId" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
+      "title" : "RDBMS_to_Cassandra_Bulk_Load",
+      "description" : "",
+      "created" : 1540826355514,
+      "lastModified" : 1540849659476,
+      "creator" : "admin",
+      "lastModifier" : "admin",
+      "lastRev" : "0",
+      "uuid" : "7ad49fbf-be2d-4dc4-93af-70b78365c2ce",
+      "valid" : true,
+      "metadata" : {
+        "labels" : [ ]
+      },
+      "name" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
+      "sdcVersion" : "3.4.0",
+      "sdcId" : "947d71cc-95ad-11e8-a5e0-4b200a557152"
+    },
+    "metadata" : {
+      "labels" : [ ]
+    },
+    "statsAggregatorStage" : {
+      "instanceName" : "statsAggregatorStageInstance",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_StatsDpmDirectlyDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "stageType" : "TARGET",
+        "label" : "Stats Aggregator -Write to Control Hub directly"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    },
+    "startEventStages" : [ {
+      "instanceName" : "Discard_StartEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Start Event - Discard",
+        "xPos" : 280,
+        "yPos" : 50,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "stopEventStages" : [ {
+      "instanceName" : "Discard_StopEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stop Event - Discard",
+        "xPos" : 280,
+        "yPos" : 50,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "testOriginStage" : {
+      "instanceName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStage",
+      "library" : "streamsets-datacollector-dev-lib",
+      "stageName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "rawData",
+        "value" : "{\n  \"f1\": \"abc\",\n  \"f2\": \"xyz\",\n  \"f3\": \"lmn\"\n}"
+      }, {
+        "name" : "stopAfterFirstBatch",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "stageType" : "SOURCE",
+        "label" : "Test Origin - Dev Raw Data Source"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStageOutputLane1" ],
+      "eventLanes" : [ ],
+      "services" : [ {
+        "service" : "com.streamsets.pipeline.api.service.dataformats.DataFormatParserService",
+        "serviceVersion" : 1,
+        "configuration" : [ {
+          "name" : "displayFormats",
+          "value" : "DELIMITED,JSON,LOG,SDC_JSON,TEXT,XML"
+        }, {
+          "name" : "dataFormat",
+          "value" : "JSON"
+        }, {
+          "name" : "dataFormatConfig.compression",
+          "value" : "NONE"
+        }, {
+          "name" : "dataFormatConfig.filePatternInArchive",
+          "value" : "*"
+        }, {
+          "name" : "dataFormatConfig.charset",
+          "value" : "UTF-8"
+        }, {
+          "name" : "dataFormatConfig.removeCtrlChars",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.textMaxLineLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.useCustomDelimiter",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customDelimiter",
+          "value" : "\\r\\n"
+        }, {
+          "name" : "dataFormatConfig.includeCustomDelimiterInTheText",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.jsonContent",
+          "value" : "MULTIPLE_OBJECTS"
+        }, {
+          "name" : "dataFormatConfig.jsonMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.csvFileFormat",
+          "value" : "CSV"
+        }, {
+          "name" : "dataFormatConfig.csvHeader",
+          "value" : "NO_HEADER"
+        }, {
+          "name" : "dataFormatConfig.csvAllowExtraColumns",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvExtraColumnPrefix",
+          "value" : "_extra_"
+        }, {
+          "name" : "dataFormatConfig.csvMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.csvCustomDelimiter",
+          "value" : "|"
+        }, {
+          "name" : "dataFormatConfig.csvCustomEscape",
+          "value" : "\\"
+        }, {
+          "name" : "dataFormatConfig.csvCustomQuote",
+          "value" : "\""
+        }, {
+          "name" : "dataFormatConfig.csvEnableComments",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvCommentMarker",
+          "value" : "#"
+        }, {
+          "name" : "dataFormatConfig.csvIgnoreEmptyLines",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvRecordType",
+          "value" : "LIST_MAP"
+        }, {
+          "name" : "dataFormatConfig.csvSkipStartLines",
+          "value" : 0
+        }, {
+          "name" : "dataFormatConfig.parseNull",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.nullConstant",
+          "value" : "\\\\N"
+        }, {
+          "name" : "dataFormatConfig.xmlRecordElement",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.includeFieldXpathAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xPathNamespaceContext",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.outputFieldAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xmlMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.logMode",
+          "value" : "COMMON_LOG_FORMAT"
+        }, {
+          "name" : "dataFormatConfig.logMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.retainOriginalLine",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customLogFormat",
+          "value" : "%h %l %u %t \"%r\" %>s %b"
+        }, {
+          "name" : "dataFormatConfig.regex",
+          "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+        }, {
+          "name" : "dataFormatConfig.fieldPathsToGroupName",
+          "value" : [ {
+            "fieldPath" : "/",
+            "group" : 1
+          } ]
+        }, {
+          "name" : "dataFormatConfig.grokPatternDefinition",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.grokPattern",
+          "value" : "%{COMMONAPACHELOG}"
+        }, {
+          "name" : "dataFormatConfig.onParseError",
+          "value" : "ERROR"
+        }, {
+          "name" : "dataFormatConfig.maxStackTraceLines",
+          "value" : 50
+        }, {
+          "name" : "dataFormatConfig.enableLog4jCustomLogFormat",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.log4jCustomLogFormat",
+          "value" : "%r [%t] %-5p %c %x - %m%n"
+        }, {
+          "name" : "dataFormatConfig.avroSchemaSource",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.avroSchema",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaRegistryUrls",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.schemaLookupMode",
+          "value" : "SUBJECT"
+        }, {
+          "name" : "dataFormatConfig.subject",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaId",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.protoDescriptorFile",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.messageType",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.isDelimited",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.binaryMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.datagramMode",
+          "value" : "SYSLOG"
+        }, {
+          "name" : "dataFormatConfig.typesDbPath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.convertTime",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excludeInterval",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.authFilePath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesMode",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSize",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMs",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesModeDatagram",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSizeDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMsDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.wholeFileMaxObjectLen",
+          "value" : 8192
+        }, {
+          "name" : "dataFormatConfig.rateLimit",
+          "value" : "-1"
+        }, {
+          "name" : "dataFormatConfig.verifyChecksum",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelHeader",
+          "value" : null
+        } ]
+      } ]
+    },
+    "issues" : {
+      "pipelineIssues" : [ ],
+      "stageIssues" : { },
+      "issueCount" : 0
+    },
+    "previewable" : true,
+    "valid" : true
+  },
+  "pipelineRules" : {
+    "schemaVersion" : 3,
+    "version" : 2,
+    "metricsRuleDefinitions" : [ {
+      "id" : "badRecordsAlertID",
+      "alertText" : "High incidence of Error Records",
+      "metricId" : "pipeline.batchErrorRecords.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1540826355538,
+      "valid" : true
+    }, {
+      "id" : "stageErrorAlertID",
+      "alertText" : "High incidence of Stage Errors",
+      "metricId" : "pipeline.batchErrorMessages.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1540826355538,
+      "valid" : true
+    }, {
+      "id" : "idleGaugeID",
+      "alertText" : "Pipeline is Idle",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "TIME_OF_LAST_RECEIVED_RECORD",
+      "condition" : "${time:now() - value() > 120000}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1540826355538,
+      "valid" : true
+    }, {
+      "id" : "batchTimeAlertID",
+      "alertText" : "Batch taking more time to process",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "CURRENT_BATCH_AGE",
+      "condition" : "${value() > 200}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1540826355538,
+      "valid" : true
+    }, {
+      "id" : "memoryLimitAlertID",
+      "alertText" : "Memory limit for pipeline exceeded",
+      "metricId" : "pipeline.memoryConsumed.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > (jvm:maxMemoryMB() * 0.65)}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1540826355538,
+      "valid" : true
+    } ],
+    "dataRuleDefinitions" : [ ],
+    "driftRuleDefinitions" : [ ],
+    "uuid" : "05178b56-9ed7-404e-9f91-0745773f7bbb",
+    "configuration" : [ {
+      "name" : "emailIDs",
+      "value" : [ ]
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    } ],
+    "ruleIssues" : [ ],
+    "configIssues" : [ ]
+  },
+  "libraryDefinitions" : null
+}
