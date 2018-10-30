@@ -59,7 +59,9 @@ I'm assuming you know Killrvideo!  If not, just search for it.
 3. StreamSets Data Collector
 4. mySQL JDBC driver configured for StreamSets origins (shown in screencasts below)
 
-//TODO - add note about being new SDC, then follow the Getting Started Tutorials.
+_Please note_: If you are new to StreamSets, you are encouraged to visit http://www.streamsets.com to learn more and complete the Basic Tutorials available at https://streamsets.com/tutorials/ before attempting this tutorial.
+
+
 
 ### Use Case 1 - Bulk Loading Cassandra from RDBMS
 
@@ -88,29 +90,36 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 
 ### Use Case 2 - Change Data Capture to Cassandra
 
-// TODO - add background on what CDC is.  then show screencast demo
-// include thoughts on whether or not we want to capture history of operations such as updates or perform physical simulation
+In databases, change data capture (CDC) is a set of software design patterns used to determine (and track) the data that has changed so that action can be taken using the changed data. [1]
 
-// Provide examples DELETES and updates.
+In other words, for this tutorial, a mySQL CDC origin will allows us to determine the insert, update or delete mutations in near real-time and mimic these operations into the Cassandra destination.
 
-In this example, we'll retain history.  See FAQ below for alternative.
+StreamSets has many options for CDC databases out-of-the-box including Oracle, Microsoft SQL Server, Mongo, PostgreSQL and mySQL. [2]
+
+When implementing CDC patterns, you usually start with a few high-level choices:
+
+* Do you want to perform logical or physical deletes from origin to destination?  Depends on design of origin.  Logical deletes are often referred to as "soft deletes" where a column is updated to indicate if a record has been deleted or not; i.e. a boolean `deleted` column or an `operation_type` column indicator.
+
+* Do you want to perform logical or physical updates?  When an update happens at the source RDBMS, do you want to update the record in the destatination or do you want to perform write a new record with a logical update.  As an example of logical update, you may have a data model with an `operation_type` column with int value indicators for INSERT, UPDATE or DELETE.  An `operation_type` column is often paired with with a `created_at` timestamp column.  These two columns would allow you to have a running history of updates to a particular entity.  (or even deletes if you choose)
+
+In this tutorial, we're going to implement the logical instead of phyical approach when collecting mutations to Cassandra destination.
+
+In this tutorial, we'll retain history.  See FAQ below for alternative.
+
 
 // TODO Screencast link
+// Import the pipeline
 // Show JDBC driver setup
 
 #### Key Deliverables
 
-// TODO
+In this second data pipeline example, we showed how implement CDC from mySQL to Cassandra using a **_streaming_** pipeline.  As opposed to the first example which was a one-time **_batch_** pipeline, this pipeline is intended to run continuously.  
+
+We chose the approach or logical updates and deletes.
 
 #### StreamSets Configuration
-// Link to mySQL CDC setup and other options
-
-#### Cassandra configuration
-// TODO - TBD - add field for `operation.type`
-
-
-
-
+// TODO Link to mySQL CDC setup and other options
+// maybe a screencast to cover
 
 
 
@@ -121,14 +130,20 @@ In this example, we'll retain history.  See FAQ below for alternative.
 
 Solution: Break up into multiple pipelines and filter accordingly.  You can filter in both the Bulk Ingest pipeline as well as the CDC origin pipeline:
 
-// TODO show screenshots
+// TODO show screenshots with filtering option and cdc option to have diff consumer
 
-2. I want physical deletes vs. logical.
+2. What if I want to perform physical deletes vs. logical?
+// TODO
+
+3. What if I want to perform physical updates vs. logical?
+In this case, simply update your StreamSets pipeline and Cassandra data model to remove the `created_at` and `operation_type` fields. An existing record in Cassandra will be updated (upsert).  The `cassandra_schema_no_history.cql` file has this model all ready for you.  Note: you'll need to address deletes or sdc.operation.type == 2 in your pipeline with this model.
 
 
 
+#### References
 
-
+[1] https://en.wikipedia.org/wiki/Change_data_capture
+[2] https://streamsets.com/documentation/datacollector/3.4.0/help/datacollector/UserGuide/Pipeline_Design/CDC-Overview.html?hl=cdc
 
 
 

@@ -5,7 +5,7 @@
     "pipelineId" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
     "title" : "RDBMS_to_Cassandra_Bulk_Load",
     "description" : "",
-    "uuid" : "7ad49fbf-be2d-4dc4-93af-70b78365c2ce",
+    "uuid" : "5b1829c9-c5b6-4408-92ad-43f169a82644",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -331,6 +331,104 @@
       "eventLanes" : [ "JDBCMultitableConsumer_01_EventLane" ],
       "services" : [ ]
     }, {
+      "instanceName" : "ExpressionEvaluator_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "expressionProcessorConfigs",
+        "value" : [ {
+          "fieldToSet" : "/created_at",
+          "expression" : "${time:now()}"
+        }, {
+          "fieldToSet" : "/operation_type",
+          "expression" : "${math:abs(1)}"
+        } ]
+      }, {
+        "name" : "headerAttributeConfigs",
+        "value" : [ { } ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ {
+          "fieldToSet" : "/"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Add Metadata",
+        "xPos" : 280,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JDBCMultitableConsumer_01OutputLane15408263673960" ],
+      "outputLanes" : [ "ExpressionEvaluator_01OutputLane15409277581630" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldTypeConverter_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "convertBy",
+        "value" : "BY_FIELD"
+      }, {
+        "name" : "fieldTypeConverterConfigs",
+        "value" : [ {
+          "fields" : [ "/operation_type" ],
+          "targetType" : "INTEGER",
+          "treatInputFieldAsDate" : false,
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "wholeTypeConverterConfigs",
+        "value" : [ {
+          "sourceType" : "INTEGER",
+          "targetType" : "INTEGER",
+          "treatInputFieldAsDate" : false,
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Type Converter",
+        "xPos" : 500,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane15409277581630" ],
+      "outputLanes" : [ "FieldTypeConverter_01OutputLane15409291680230" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
       "instanceName" : "StreamSelector_01",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
@@ -359,12 +457,12 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Stream Selector 1",
-        "xPos" : 280,
+        "label" : "Stream Selector",
+        "xPos" : 720,
         "yPos" : 140,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "JDBCMultitableConsumer_01OutputLane15408263673960" ],
+      "inputLanes" : [ "FieldTypeConverter_01OutputLane15409291680230" ],
       "outputLanes" : [ "StreamSelector_01OutputLane1540827112300", "StreamSelector_01OutputLane1540826427290", "StreamSelector_01OutputLane1540826378800" ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -377,7 +475,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Not User or Movie - No Default Needed",
-        "xPos" : 500,
+        "xPos" : 940,
         "yPos" : 300,
         "stageType" : "TARGET"
       },
@@ -489,7 +587,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Movie  UUID Lookup and Cache",
-        "xPos" : 500,
+        "xPos" : 940,
         "yPos" : 40,
         "stageType" : "PROCESSOR"
       },
@@ -601,7 +699,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "User UUID Lookup and Cache",
-        "xPos" : 500,
+        "xPos" : 940,
         "yPos" : 170,
         "stageType" : "PROCESSOR"
       },
@@ -713,8 +811,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "User Ratings Lookups",
-        "xPos" : 726.7716674804688,
-        "yPos" : 283.7637634277344,
+        "xPos" : 1160,
+        "yPos" : 170,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
@@ -748,8 +846,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Any ratings?",
-        "xPos" : 935.93701171875,
-        "yPos" : 283.76377868652344,
+        "xPos" : 1364.653564453125,
+        "yPos" : 103.499267578125,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "JDBCLookup_02OutputLane15408271554290" ],
@@ -765,8 +863,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Ratings",
-        "xPos" : 1161.3543701171875,
-        "yPos" : 344.1732482910156,
+        "xPos" : 1583.374755859375,
+        "yPos" : 153.1619415283203,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540845740169" ],
@@ -877,8 +975,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "User Movie Tags Lookup",
-        "xPos" : 725.4172973632812,
-        "yPos" : 419.8897705078125,
+        "xPos" : 1160,
+        "yPos" : 320,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
@@ -912,8 +1010,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Any Tags?",
-        "xPos" : 927.81103515625,
-        "yPos" : 526.8818359375,
+        "xPos" : 1380,
+        "yPos" : 320,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "JDBCLookup_01OutputLane15408264711340" ],
@@ -929,8 +1027,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Tags",
-        "xPos" : 1176.2520751953125,
-        "yPos" : 705.1181030273438,
+        "xPos" : 1584.6536865234375,
+        "yPos" : 483.48126220703125,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845205815" ],
@@ -977,6 +1075,12 @@
         }, {
           "field" : "/description",
           "columnName" : "description"
+        }, {
+          "field" : "/created_at",
+          "columnName" : "created_at"
+        }, {
+          "field" : "/operation_type",
+          "columnName" : "operation_type"
         } ]
       }, {
         "name" : "conf.username",
@@ -1028,7 +1132,7 @@
         "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
-        "value" : [ ]
+        "value" : [ "/operation_type", "/created_at" ]
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
@@ -1036,7 +1140,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert Movies Table",
-        "xPos" : 720,
+        "xPos" : 1160,
         "yPos" : 40,
         "stageType" : "TARGET"
       },
@@ -1087,6 +1191,12 @@
         }, {
           "field" : "/email",
           "columnName" : "email"
+        }, {
+          "field" : "/created_at",
+          "columnName" : "created_at"
+        }, {
+          "field" : "/operation_type",
+          "columnName" : "operation_type"
         } ]
       }, {
         "name" : "conf.username",
@@ -1138,7 +1248,7 @@
         "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
-        "value" : [ ]
+        "value" : [ "/created_at", "/operation_type" ]
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
@@ -1146,8 +1256,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Users",
-        "xPos" : 721.6666870117188,
-        "yPos" : 168.3333282470703,
+        "xPos" : 1160,
+        "yPos" : 470,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
@@ -1194,6 +1304,12 @@
         }, {
           "field" : "/rating",
           "columnName" : "rating"
+        }, {
+          "field" : "/created_at",
+          "columnName" : "created_at"
+        }, {
+          "field" : "/operation_type",
+          "columnName" : "operation_type"
         } ]
       }, {
         "name" : "conf.username",
@@ -1253,8 +1369,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movie Ratings By User",
-        "xPos" : 1165.93701171875,
-        "yPos" : 227.0971221923828,
+        "xPos" : 1580.817138671875,
+        "yPos" : 43.62371063232422,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540846631681" ],
@@ -1301,6 +1417,12 @@
         }, {
           "field" : "/movie_uuid",
           "columnName" : "movie_id"
+        }, {
+          "field" : "/created_at",
+          "columnName" : "created_at"
+        }, {
+          "field" : "/operation_type",
+          "columnName" : "operation_type"
         } ]
       }, {
         "name" : "conf.username",
@@ -1360,8 +1482,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movies By Tag table",
-        "xPos" : 1167.287841796875,
-        "yPos" : 460.9793701171875,
+        "xPos" : 1585.9324951171875,
+        "yPos" : 261.4033203125,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1408,6 +1530,12 @@
         }, {
           "field" : "/tag",
           "columnName" : "tag"
+        }, {
+          "field" : "/created_at",
+          "columnName" : "created_at"
+        }, {
+          "field" : "/operation_type",
+          "columnName" : "operation_type"
         } ]
       }, {
         "name" : "conf.username",
@@ -1467,8 +1595,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movie Tags by User",
-        "xPos" : 1172.202166933002,
-        "yPos" : 581.0397597804214,
+        "xPos" : 1587.21142578125,
+        "yPos" : 371.7586364746094,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1492,9 +1620,9 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Stop Pipeline When Finished",
+        "label" : "Stop Pipeline When Complete",
         "xPos" : 280,
-        "yPos" : 290,
+        "yPos" : 200,
         "stageType" : "EXECUTOR"
       },
       "inputLanes" : [ "JDBCMultitableConsumer_01_EventLane" ],
@@ -1525,21 +1653,21 @@
       "title" : "RDBMS_to_Cassandra_Bulk_Load",
       "description" : "",
       "created" : 1540826355514,
-      "lastModified" : 1540849659476,
+      "lastModified" : 1540929372136,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "7ad49fbf-be2d-4dc4-93af-70b78365c2ce",
+      "uuid" : "5b1829c9-c5b6-4408-92ad-43f169a82644",
       "valid" : true,
       "metadata" : {
-        "labels" : [ ]
+        "labels" : [ "cassandra" ]
       },
       "name" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
       "sdcVersion" : "3.4.0",
       "sdcId" : "947d71cc-95ad-11e8-a5e0-4b200a557152"
     },
     "metadata" : {
-      "labels" : [ ]
+      "labels" : [ "cassandra" ]
     },
     "statsAggregatorStage" : {
       "instanceName" : "statsAggregatorStageInstance",

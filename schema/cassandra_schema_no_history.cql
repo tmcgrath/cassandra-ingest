@@ -9,9 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
     first_name text,
     last_name text,
     email text,
-    created_at timestamp,
-    operation_type int,
-    PRIMARY KEY ((id), created_at, operation_type)
+    created_date timestamp,
+    PRIMARY KEY (id)
 );
 
 // Movies by id
@@ -19,19 +18,19 @@ CREATE TABLE IF NOT EXISTS movies (
     id uuid,
     name text,
     description text,
-    created_at timestamp,
-    operation_type int,
-    PRIMARY KEY ((id), created_at, operation_type)
+    tags set<text>,
+    created_date timestamp,
+    PRIMARY KEY (id)
 );
 
 // One-to-many from user
 // CREATE TABLE IF NOT EXISTS user_movies (
 //    user_id uuid,
-//    created_at timestamp,
+//    created_date timestamp,
 //    movie_id uuid,
 //    name text,
-//    PRIMARY KEY (user_id, created_at, movie_id)
-// ) WITH CLUSTERING ORDER BY (created_at DESC, movie_id ASC);
+//    PRIMARY KEY (user_id, created_date, movie_id)
+// ) WITH CLUSTERING ORDER BY (created_date DESC, movie_id ASC);
 
 // Movie ratings (counter table)
 CREATE TABLE IF NOT EXISTS movie_ratings (
@@ -46,9 +45,7 @@ CREATE TABLE IF NOT EXISTS movie_ratings_by_user (
     movie_id uuid,
     user_id uuid,
     rating int,
-    created_at timestamp,
-    operation_type int,
-    PRIMARY KEY ((movie_id), user_id, created_at, operation_type)
+    PRIMARY KEY (movie_id, user_id)
 );
 
 // Tags by user (may have multiple tags)
@@ -56,17 +53,14 @@ CREATE TABLE IF NOT EXISTS movie_tags_by_user (
     movie_id uuid,
     user_id uuid,
     tag text,
-    created_at timestamp,
-    operation_type int,
-    PRIMARY KEY ((user_id), movie_id, tag, created_at, operation_type)
+    PRIMARY KEY ((user_id), movie_id, tag)
 );
 
 // Index for tag keywords
 CREATE TABLE IF NOT EXISTS movies_by_tag (
     tag text,
     movie_id uuid,
-    created_at timestamp,
+    created_date timestamp,
     user_id uuid,
-    operation_type int,
-    PRIMARY KEY ((tag), movie_id, created_at, operation_type)
+    PRIMARY KEY (tag, movie_id)
 );
