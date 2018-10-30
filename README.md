@@ -22,7 +22,7 @@ We're going to cover the both **_batch_** and **_streaming_** based  data ingest
 
 * Use Case 2: Change Data Capture (aka CDC) trickle feed from RDBMS to Cassandra to keep Cassandra updated (streaming)
 
-Why does this matter?
+Why this matters?
 
 * May allows migration to Cassandra more quickly than writing a custom code solution
 
@@ -35,11 +35,21 @@ Why does this matter?
 
 ## Our Approach
 
-I'm going to riff off the infamous Killrvideo references.  I'm assuming you know Killrvideo!  If not, just search for it.  
+I'm going to riff off the infamous Killrvideo based references.  In this tutorial, we're going to present and solve for a migrating a RDBMS called Killrmovies to Cassandra.  Killrmovies?  Yeah, I know, I know, not the most original name.  I'm open to other ideas and considered alternatives such as SweetMovies, KickButtVideos and DopeVids, but we're going with Killrmovies for now.  
 
-We'll utilize Killrvideo because it's often used when introducing and teaching data modeling in Cassandra.  This especially matters for this tutorial where we are taking an existing RDBMS based model and migrating to Cassandra.  
+Killrmovies is a subset of Killrvideo schema and will work well when highlighting the differences in data models.  
 
-In the following examples, we're going to present and solve for a migrating a RDBMS called Killrmovies to Cassandra.  Killrmovies?  I know, I know, not the most original name and I'm open to other ideas.  Considered alternatives were SweetMovies, KickButtVideos and DopeVids, but we're going with Killrmovies for now.  Killrmovies is a subset of Killrvideo schema.   
+In particular, the Killrmovies RDBMS data model is traditional 3NF where normalization is paramount.
+
+// TODO diagram
+
+Conversely, when moving to Cassandra, our data model is based on known queries with denormalized data.  
+
+// TODO chebotko diagram    
+
+We'll utilize Killrvideo because it's often used when introducing and teaching data modeling in Cassandra.  This especially matters for this tutorial where we are taking an existing RDBMS based model and migrating to Cassandra.
+
+I'm assuming you know Killrvideo!  If not, just search for it.  
 
 
 ### Requirements
@@ -47,6 +57,7 @@ In the following examples, we're going to present and solve for a migrating a RD
 1. Cassandra or DataStax Enterprise (DSE)
 2. RDBMS with JDBC driver such as Oracle, Microsft SQL Server, PostgreSQL or mySQL.  (this tutorial uses mySQL.  swap as necessary.)
 3. StreamSets Data Collector
+4. mySQL JDBC driver configured for StreamSets origins (shown in screencasts below)
 
 //TODO - add note about being new SDC, then follow the Getting Started Tutorials.
 
@@ -57,7 +68,7 @@ Let's work backwards.  What does the end result of bulk loading into Cassandra f
 In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
 // TODO Screencast link
-
+// Show JDBC driver setup
 
 #### Key Deliverables
 
@@ -78,12 +89,21 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 ### Use Case 2 - Change Data Capture to Cassandra
 
 // TODO - add background on what CDC is.  then show screencast demo
+// include thoughts on whether or not we want to capture history of operations such as updates or perform physical simulation
+
+// Provide examples DELETES and updates.
+
+In this example, we'll retain history.  See FAQ below for alternative.
+
+// TODO Screencast link
+// Show JDBC driver setup
 
 #### Key Deliverables
 
 // TODO
 
 #### StreamSets Configuration
+// Link to mySQL CDC setup and other options
 
 #### Cassandra configuration
 // TODO - TBD - add field for `operation.type`
@@ -94,7 +114,16 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 
 
 
-.
+
+#### FAQ / Common Objections
+
+1. My RDBMS has too many tables to address in a StreamSets pipeline.
+
+Solution: Break up into multiple pipelines and filter accordingly.  You can filter in both the Bulk Ingest pipeline as well as the CDC origin pipeline:
+
+// TODO show screenshots
+
+2. I want physical deletes vs. logical.
 
 
 
