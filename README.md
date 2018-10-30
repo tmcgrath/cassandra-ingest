@@ -1,4 +1,4 @@
-# Cassandra Ingest from Relational Databases
+## Cassandra Ingest from Relational Databases with StreamSets
 
 How do you ingest from an existing relational database (RDBMS) to Cassandra?  Or, how about ingesting from existing RDBMS based app to a Kerberized DataStax cluster?  
 
@@ -33,7 +33,7 @@ Why does this matter?
 * Utilizes a tool built for ingest, so you can focus on your business objectives.  You're not in the data ingest business, right?  So why build something when you don't have to.
 
 
-# Our Approach
+## Our Approach
 
 I'm going to riff off the infamous Killrvideo references.  I'm assuming you know Killrvideo!  If not, just search for it.  
 
@@ -42,7 +42,7 @@ We'll utilize Killrvideo because it's often used when introducing and teaching d
 In the following examples, we're going to present and solve for a migrating a RDBMS called Killrmovies to Cassandra.  Killrmovies?  I know, I know, not the most original name and I'm open to other ideas.  Considered alternatives were SweetMovies, KickButtVideos and DopeVids, but we're going with Killrmovies for now.  Killrmovies is a subset of Killrvideo schema.   
 
 
-## Requirements
+### Requirements
 
 1. Cassandra or DataStax Enterprise (DSE)
 2. RDBMS with JDBC driver such as Oracle, Microsft SQL Server, PostgreSQL or mySQL.  (this tutorial uses mySQL.  swap as necessary.)
@@ -50,7 +50,7 @@ In the following examples, we're going to present and solve for a migrating a RD
 
 //TODO - add note about being new SDC, then follow the Getting Started Tutorials.
 
-## Use Case 1 - Bulk Loading Cassandra from RDBMS
+### Use Case 1 - Bulk Loading Cassandra from RDBMS
 
 Let's work backwards.  What does the end result of bulk loading into Cassandra from a RDBMS with StreamSets look like?
 
@@ -59,11 +59,13 @@ In the following screencast, I demonstrate how to run provided StreamSets pipeli
 // TODO Screencast link
 
 
-## Key Deliverables
+#### Key Deliverables
 
 In this demonstration, we saw the ability to move from a data model appropriate for RDBMS to data model appropriate for Cassandra without writing any code. Instead we utilized StreamSets configuration as code.  That's an important point.  StreamSets Data Collector is not a code generator.  It is design tool and execution engine.  As we saw in the pipeline import, pipelines are represented in JSON config.  
 
-## StreamSets configuration
+**_Bonus Points_** In addition, we addressed auto-incrementing primary keys in RDBMS to `uuid` fields in Cassandra since auto-incrementing keys do not have a place in distributed databases.
+
+#### StreamSets configuration
 // TODO breakdown each stage
 
 
@@ -73,17 +75,17 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 
 
 
-## Use Case 2 - Change Data Capture to Cassandra
+### Use Case 2 - Change Data Capture to Cassandra
 
 // TODO - add background on what CDC is.  then show screencast demo
 
-## Key Deliverables
+#### Key Deliverables
 
 // TODO
 
-## StreamSets Configuration
+#### StreamSets Configuration
 
-## Cassandra configuration
+#### Cassandra configuration
 // TODO - TBD - add field for `operation.type`
 
 
@@ -91,7 +93,27 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 
 
 
-## Scratch pad now - Remove following
+
+.
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+.
+
+### Scratch pad now - Remove following
 
 // Setup notes
 Cassandra running
@@ -102,12 +124,8 @@ Add mySQL steps
 
 -- select t.*, r.* from tags t cross join ratings r on t.user_id = r.user_id where t.user_id = 1
 
-// Maybe Dockerize this ^
-
-* RDMBS to Cassandra Bulk Load
 
 Notes
-* Create video of running it and then describe each stage
 
 * Multi-table is filtering for only users and movies tables
 
