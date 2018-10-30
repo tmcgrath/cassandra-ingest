@@ -14,7 +14,7 @@ Yes.  StreamSets Data Collector and StreamSets Control Hub.  In this tutorial, I
 
 
 <todo insert screenshot or animated gif>
-![Cassandra Ingest with StreamSets](./images/cassandra-ingest-intro.gif)
+![Cassandra Ingest with StreamSets](https://github.com/tmcgrath/cassandra-ingest/tree/master/images/cassandra-ingest-intro.gif)
 
 We're going to cover the both **_batch_** and **_streaming_** based  data ingestion from RDBMS to Cassandra:
 
