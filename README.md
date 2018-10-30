@@ -16,8 +16,6 @@ For example, are there any third party tools available which focus on data inges
 
 Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating for an existing RDBMS to Cassandra.
 
-
-<todo insert screenshot or animated gif>
 ![Cassandra Ingest with StreamSets](images/cassandra-ingest-intro.gif)
 
 We're going to cover the both **_batch_** and **_streaming_** based data ingestion from RDBMS to Cassandra:
@@ -162,4 +160,8 @@ In this case, simply update your StreamSets pipeline and Cassandra data model to
 
 * Docker container with all of this and maybe even using DataStax
 
+* Use Oracle or some other source for both pipelines  
+
 * Implement a Stream Processor.  Example: 1 pipeline for batch and streaming cdc to Kafka and 1 pipeline from Kafka to Cassandra.
+
+* Others?
