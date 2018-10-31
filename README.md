@@ -4,9 +4,9 @@ How do you ingest from an existing relational database (RDBMS) to Cassandra?
 
 Or, how about ingesting from a RDBMS to a Kerberized DataStax cluster?  
 
-What about a one-time batch load of historical data vs stream future changes?
+What about a one-time batch load of historical data vs streaming changes?
 
-I know what some of you are thinking, no big deal, write and deploy some code.  And maybe the code can use a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as you'd might expect.  
+I know what some of you are thinking, write and deploy some code.  And maybe the code can utilize a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as you'd might expect.  
 
 Don't get me wrong, writing code makes much sense for some folks.  But for many others, writing and deploying custom code may require a significant time and resources.  
 
@@ -20,17 +20,17 @@ Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  In this t
 
 We're going to cover the both **_batch_** and **_streaming_** based data ingestion from RDBMS to Cassandra:
 
-* Use Case 1: Initial Bulk Load of historical RDBMS based data into Cassandra (batch)
+* **Use Case 1**: Initial Bulk Load of historical RDBMS based data into Cassandra (batch)
 
-* Use Case 2: Change Data Capture (aka CDC) trickle feed from RDBMS to Cassandra to keep Cassandra updated (streaming)
+* **Use Case 2**: Change Data Capture (aka CDC) trickle feed from RDBMS to Cassandra to keep Cassandra updated (streaming)
 
-Why this matters?
+#### Why this matters?
 
 * Migrate to Cassandra more quickly than writing a custom code solution
 
 * Build confidence in your Cassandra data models and operations using real-world data
 
-* Switch-over from RDBMS based environment to Cassandra with minimum downtown (in fact, may not be any downtime)
+* Switch-over from RDBMS based environment to Cassandra with minimum downtown (in fact, no downtime is possible.  keep reading.)
 
 * Utilize a tool built for data ingest, so you can focus on your business objectives which rely on Cassandra.  You're not in the data ingest business, right?  So why build something when you don't have to.  Prioritize.
 
@@ -56,11 +56,11 @@ I'm assuming you know Killrvideo!  If not, just search for it.
 
 ### Requirements
 
-1. Cassandra or DataStax Enterprise (DSE).  Schema used is in the schema/cassandra_schema.cql file.
+1. Cassandra or DataStax Enterprise (DSE).  (see  schema/cassandra_schema.cql file)
 
-2. A RDBMS with a JDBC driver such as Oracle, Microsoft SQL Server, PostgreSQL or mySQL. // TODO provide dump. (this tutorial uses mySQL.)
+2. A RDBMS with a JDBC driver such as Oracle, Microsoft SQL Server, PostgreSQL or mySQL. (this tutorial uses mySQL.)
 
-3. StreamSets Data Collector
+3. StreamSets Data Collector 3.4 or above
 
 _Please note_: If you are new to StreamSets, you are encouraged to visit http://www.streamsets.com to learn more and complete the Basic Tutorials available at https://streamsets.com/tutorials/ before attempting this tutorial.
 
@@ -72,7 +72,7 @@ Let's work backwards.  What does the end result of bulk loading into Cassandra f
 
 In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" /></a>
 
 
 #### Key Deliverables
@@ -82,7 +82,7 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 **_Bonus Points_** In addition, do you notice we addressed auto-incrementing primary keys in RDBMS to `uuid` fields in Cassandra?  The construct of auto-incrementing primary keys do not hold a similar position with distributed databases.
 
 #### StreamSets configuration
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=msFiD2OidOs" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-2.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 2 Screencast" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=msFiD2OidOs"><img src="images/cassandra-ingest-with-streamsets-part-2.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 2 Screencast" /></a>
 
 
 ### Use Case 2 - Change Data Capture to Cassandra
@@ -101,13 +101,9 @@ When implementing CDC patterns, you usually start with a few high-level choices:
 
 In this tutorial, we're going to implement the logical instead of physical approach when collecting mutations to Cassandra destination.
 
-In this tutorial, we'll retain history.  See FAQ below for alternative.
+In this tutorial and following screencast, we'll go with the retain history approach.  See FAQ section below for alternatives.
 
-
-// TODO Screencast link
-// Import the pipeline
-// Show JDBC driver setup for mysql bin log
-// mysql setup for binlog.  Maybe mention links in the references section.
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-yH0aMgAMhQ"><img src="images/cassandra-ingest-with-streamsets-part-3.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 3 Screencast" /></a>
 
 #### Key Deliverables
 
@@ -116,9 +112,14 @@ In this second data pipeline example, we showed how implement CDC from mySQL to 
 We chose the approach or logical updates and deletes.
 
 #### StreamSets Configuration
-// TODO Link to mySQL CDC setup and other options
-// maybe a screencast to cover
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-yH0aMgAMhQ"><img src="images/cassandra-ingest-with-streamsets-part-4.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 4 Screencast" /></a>
+
+
+// Import the pipeline
+// Link to mySQL CDC setup and other options
+// Show JDBC driver setup for mysql bin log
+// we went with retain history - see FAQ for more info
 
 
 
@@ -148,11 +149,11 @@ https://github.com/tmcgrath/cassandra-ingest
 
 ### References
 
-[1] https://en.wikipedia.org/wiki/Change_data_capture
+[1] [What is Change Data Capture?](https://en.wikipedia.org/wiki/Change_data_capture)
 
-[2] https://streamsets.com/documentation/datacollector/3.4.0/help/datacollector/UserGuide/Pipeline_Design/CDC-Overview.html?hl=cdc
+[2] [Change Data Capture (CDC) with StreamSets documentation](https://streamsets.com/documentation/datacollector/3.4.0/help/datacollector/UserGuide/Pipeline_Design/CDC-Overview.html?hl=cdc)
 
-[3] // TODO links for binlog setup
+[3] [Configuring mySQL binlog for CDC](https://github.com/tmcgrath/cassandra-ingest/wiki/Configuring-mySQL-binlog-Change-Data-Capture-Environment-Configuration)
 
 
 
