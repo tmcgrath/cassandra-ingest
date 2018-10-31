@@ -14,7 +14,7 @@ Are there any alternatives for Cassandra ingestion from a RDBMS?
 
 For example, are there any third party tools available which focus on data ingestion?  And if so, do they support Cassandra or DataStax from an RDBMS?  
 
-Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating for an existing RDBMS to Cassandra.
+Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating from an existing RDBMS to DataStax or Cassandra.
 
 ![Cassandra Ingest with StreamSets](images/cassandra-ingest-intro.gif)
 
@@ -37,19 +37,21 @@ We're going to cover the both **_batch_** and **_streaming_** based data ingesti
 
 ## Our Approach
 
-I'm going to riff off the infamous Killrvideo.  Specifically, in this tutorial we're going to present and solve for a migrating a RDBMS called Killrmovies to Cassandra.  Killrmovies is a subset of the Killrvideo schema and will work well when highlighting the differences in data models.
+I'm going to riff off the world famous Killrvideo.  Specifically, in this tutorial we're going to present and solve for a migrating a RDBMS called Killrmovies to Cassandra.  Killrmovies is a subset of the Killrvideo schema and will work well when highlighting the differences in data models.
 
-You named it Killrmovies?  Yeah, I know, I know, not the most original name.  I'm open to other ideas and considered alternatives such as SweetMovies, KickButtVideos and DopeVids, but we're going with Killrmovies for now.  
+In other words, what can we do if we are migrating to DataStax or Cassandra from an RDBMS and not building something entirely new?
+
+Before we begin, you might be wondering why I named it Killrmovies?  Yeah, I know, I know, not the most original name.  I'm open to other ideas and considered alternatives such as SweetMovies, KickButtVideos and DopeVids, but we're going with Killrmovies for now.  
 
 Killrmovies RDBMS data model is traditional, 3NF where normalization is paramount.
 
 // TODO diagram
 
-Conversely, when moving to Cassandra, our data model is based on known queries with denormalized data.  
+Conversely, when moving to Cassandra, the data model is based on known queries with denormalized data.  
 
 // TODO chebotko diagram    
 
-We're leveraging Killrvideo because it's often used when introducing and teaching data modeling in Cassandra.  And this especially relevant in this tutorial where we are taking an existing RDBMS based model and migrating to Cassandra.
+We're leveraging a subset of Killrvideo because it's often used when introducing and teaching data modeling in DataStax and Cassandra.  And this especially relevant in this tutorial where we are taking an existing RDBMS based model and migrating to Cassandra.
 
 I'm assuming you know Killrvideo!  If not, just search for it.  
 
@@ -77,11 +79,14 @@ In the following screencast, I demonstrate how to run provided StreamSets pipeli
 
 #### Key Deliverables
 
-In this demonstration, we saw the ability to move from a data model appropriate for RDBMS to data model appropriate for Cassandra without writing any code. Instead we utilized StreamSets configuration as code.  That's an important point.  StreamSets Data Collector is not a code generator.  It is design tool and execution engine.  As we saw in the pipeline import, pipelines are represented in JSON config.  
+In the demonstration, we saw the ability to move from a data model appropriate for RDBMS to a data model appropriate for Cassandra without writing any code. Instead we utilized StreamSets configuration as code.  That's an important point.  StreamSets Data Collector is not a code generator.  It is design tool and execution engine.  As we saw in the pipeline import, pipelines are represented in JSON config.  
 
-**_Bonus Points_** In addition, do you notice we addressed auto-incrementing primary keys in RDBMS to `uuid` fields in Cassandra?  The construct of auto-incrementing primary keys do not hold a similar position with distributed databases.
+**_Bonus Points_** In addition, did you notice we addressed auto-incrementing primary keys in RDBMS to `uuid` fields in Cassandra?  The construct of auto-incrementing primary keys do not hold a similar position with distributed databases.
 
 #### StreamSets configuration
+
+How should we configure StreamSets for this bulk load use case?
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=msFiD2OidOs"><img src="images/cassandra-ingest-with-streamsets-part-2.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 2 Screencast" /></a>
 
 
@@ -89,33 +94,40 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 
 In databases, change data capture (CDC) is a set of software design patterns used to determine (and track) the data that has changed so that action can be taken using the changed data. [1]
 
-In other words, for this tutorial, a mySQL CDC origin will allows us to determine the insert, update or delete mutations in near real-time and mimic these operations into the Cassandra destination.
+In other words, for this tutorial, a mySQL CDC origin will allow us to determine the insert, update or delete mutations in near real-time in order to translate these operations into our Cassandra destination.
 
-StreamSets has many options for CDC databases out-of-the-box including Oracle, Microsoft SQL Server, Mongo, PostgreSQL and mySQL. [2]
+StreamSets has many out-of-the-box options for CDC enabled databases including Oracle, Microsoft SQL Server, Mongo, PostgreSQL and mySQL. [2]
 
 When implementing CDC patterns, you usually start with a few high-level choices:
 
-* Do you want to perform logical or physical deletes from origin to destination?  Depends on design of origin.  Logical deletes are often referred to as "soft deletes" where a column is updated to indicate if a record has been deleted or not; i.e. a boolean `deleted` column or an `operation_type` column indicator.
+* Do you want to perform logical or physical deletes from origin to destination?  Depends on design of origin.  Is the origin performing physical deletes? Logical deletes are often referred to as "soft deletes" where a column is updated to indicate if a record has been deleted or not; i.e. a boolean `deleted` column or an `operation_type` column indicator.  
 
-* Do you want to perform logical or physical updates?  When an update happens at the source RDBMS, do you want to update the record in the destination or do you want to perform write a new record with a logical update.  As an example of logical update, you may have a data model with an `operation_type` column with int value indicators for INSERT, UPDATE or DELETE.  An `operation_type` column is often paired with with a `created_at` timestamp column.  These two columns would allow you to have a running history of updates to a particular entity.  (or even deletes if you choose)
+* Do you want to perform logical or physical updates?  When an update happens at the source RDBMS, do you want to update the record in the destination or do you want to write a new record with a logical update.  As an example of logical update, you may have a data model with an `operation_type` column with int value indicators for INSERT, UPDATE or DELETE.  An `operation_type` column is often paired with with a `created_at` timestamp column.  These two columns would allow you to have a running history of updates to a particular entity.  (or even deletes if you choose)
 
-In this tutorial, we're going to implement the logical instead of physical approach when collecting mutations to Cassandra destination.
+You have options. In this tutorial, we're going to implement the logical instead of physical approach when collecting RDBMS mutations to the Cassandra destination.
 
-In this tutorial and following screencast, we'll go with the retain history approach.  See FAQ section below for alternatives.
+In the logical approach, we will be retaining a history of source mutations. See FAQ section below for alternatives.
+
+Let's take a look at example
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=-yH0aMgAMhQ"><img src="images/cassandra-ingest-with-streamsets-part-3.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 3 Screencast" /></a>
 
 #### Key Deliverables
 
-In this second data pipeline example, we showed how implement CDC from mySQL to Cassandra using a **_streaming_** pipeline.  As opposed to the first example which was a one-time **_batch_** pipeline, this pipeline is intended to run continuously.  
+In this second data pipeline example, we showed CDC from mySQL to Cassandra using a **_streaming_** pipeline.  This is different from the first example which was a one-time **_batch_** pipeline.  This pipeline is intended to run continuously.  
 
-We chose the approach or logical updates and deletes.
+We chose the approach of logical updates and deletes vs. physical.
 
 #### StreamSets Configuration
 
 Let's review how this pipeline is configured in the following screencast
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=_3nOPu5sfkc"><img src="images/cassandra-ingest-with-streamsets-part-4.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 4 Screencast" /></a>
+
+### Conclusion
+
+In this tutorial, you saw how to batch load and stream changes from a RDBMS to Cassandra using StreamSets.  If you have any questions or suggestions for improvement, let me know!
+
 
 
 #### FAQ
