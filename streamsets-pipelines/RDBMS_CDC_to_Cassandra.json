@@ -5,7 +5,7 @@
     "pipelineId" : "RDBMSCDCtoCassandrabfe7d297-82bc-48cb-bc50-e538477e1cb0",
     "title" : "RDBMS_CDC_to_Cassandra",
     "description" : "",
-    "uuid" : "c5bb37be-d7cc-4183-b2d9-cf9d64074ea2",
+    "uuid" : "47f2eead-1231-4f2d-ae9e-d2914f4c9bff",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -248,8 +248,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "MySQL Binary Log Change Data Capture",
-        "xPos" : 60,
-        "yPos" : 50,
+        "xPos" : 134.12936401367188,
+        "yPos" : 25.32048797607422,
         "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
@@ -288,8 +288,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Set Table Name in Header",
-        "xPos" : 248.1602783203125,
-        "yPos" : 51.38433837890625,
+        "xPos" : 318.1502990722656,
+        "yPos" : 52.84246063232422,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "MySQLBinaryLog_01OutputLane15409117610260" ],
@@ -334,8 +334,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Extract Mutated Data and Set Operation Type",
-        "xPos" : 441.85791015625,
-        "yPos" : 51.38433074951172,
+        "xPos" : 491.43414306640625,
+        "yPos" : 109.70934295654297,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "ExpressionEvaluator_01OutputLane15409128205720" ],
@@ -389,8 +389,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Field Type Converter",
-        "xPos" : 621.0928955078125,
-        "yPos" : 147.0856170654297,
+        "xPos" : 659.004150390625,
+        "yPos" : 179.16436767578125,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "ExpressionEvaluator_02OutputLane15409128489260" ],
@@ -433,8 +433,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Which Table Changed?",
-        "xPos" : 821.7122192382812,
-        "yPos" : 198.14205932617188,
+        "xPos" : 825.0202026367188,
+        "yPos" : 224.105224609375,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "FieldTypeConverter_01OutputLane15409299538680" ],
@@ -449,9 +449,9 @@
       "configuration" : [ ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Default",
-        "xPos" : 1028.1458129882812,
-        "yPos" : 469.4266357421875,
+        "label" : "Disregard",
+        "xPos" : 1012.1063842773438,
+        "yPos" : 446.09661865234375,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1540826378800" ],
@@ -562,8 +562,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Movie  UUID Lookup and Cache",
-        "xPos" : 1036.903564453125,
-        "yPos" : 42.76866912841797,
+        "xPos" : 1038.2833251953125,
+        "yPos" : 59.32612609863281,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1540913949458" ],
@@ -674,8 +674,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "User UUID Lookup and Cache",
-        "xPos" : 1030.2077026367188,
-        "yPos" : 345.1897735595703,
+        "xPos" : 1014.1683959960938,
+        "yPos" : 336.44102478027344,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1540826427290" ],
@@ -838,8 +838,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Ratings",
-        "xPos" : 1692.60400390625,
-        "yPos" : 149.83395385742188,
+        "xPos" : 1694.06201171875,
+        "yPos" : 138.1689453125,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540845740169" ],
@@ -951,7 +951,7 @@
         "description" : "",
         "label" : "User Movie Tags Lookup",
         "xPos" : 1241.4500732421875,
-        "yPos" : 285.9614562988281,
+        "yPos" : 284.5816650390625,
         "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1540827112300" ],
@@ -1002,8 +1002,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Tags",
-        "xPos" : 1702.1129150390625,
-        "yPos" : 494.2351989746094,
+        "xPos" : 1696.2803955078125,
+        "yPos" : 460.6983337402344,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845205815" ],
@@ -1115,8 +1115,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Movies Table",
-        "xPos" : 1234.754150390625,
-        "yPos" : 38.61566162109375,
+        "xPos" : 1237.513671875,
+        "yPos" : 52.413543701171875,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "JDBCLookup_03OutputLane15408448157220" ],
@@ -1232,7 +1232,7 @@
         "description" : "",
         "label" : "Users Table",
         "xPos" : 1243.0601806640625,
-        "yPos" : 410.0362854003906,
+        "yPos" : 401.28753662109375,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
@@ -1345,7 +1345,7 @@
         "description" : "",
         "label" : "Movie Ratings By User",
         "xPos" : 1694.134765625,
-        "yPos" : 40.40680694580078,
+        "yPos" : 31.658058166503906,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540846631681" ],
@@ -1457,8 +1457,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Movies By Tag table",
-        "xPos" : 1692.8507080078125,
-        "yPos" : 264.6905212402344,
+        "xPos" : 1694.308837890625,
+        "yPos" : 245.73489379882812,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1570,8 +1570,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Movie Tags by User",
-        "xPos" : 1697.358642578125,
-        "yPos" : 376.9161682128906,
+        "xPos" : 1694.4423828125,
+        "yPos" : 353.5861511230469,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1602,11 +1602,11 @@
       "title" : "RDBMS_CDC_to_Cassandra",
       "description" : "",
       "created" : 1540911724438,
-      "lastModified" : 1540930148753,
+      "lastModified" : 1541010894781,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "c5bb37be-d7cc-4183-b2d9-cf9d64074ea2",
+      "uuid" : "47f2eead-1231-4f2d-ae9e-d2914f4c9bff",
       "valid" : true,
       "metadata" : {
         "labels" : [ "cassandra" ]
