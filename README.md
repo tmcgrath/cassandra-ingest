@@ -72,7 +72,7 @@ Let's work backwards.  What does the end result of bulk loading into Cassandra f
 
 In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast"/></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" /></a>
 
 
 #### Key Deliverables
@@ -82,10 +82,7 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 **_Bonus Points_** In addition, do you notice we addressed auto-incrementing primary keys in RDBMS to `uuid` fields in Cassandra?  The construct of auto-incrementing primary keys do not hold a similar position with distributed databases.
 
 #### StreamSets configuration
-// TODO breakdown each stage - maybe a different video and reference links here.
-// Cassandra Destination call out Auth Provider and Protocol version options
-// JDBC Lookup is configured for caching
-// Show JDBC driver setup
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=msFiD2OidOs" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-2.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 2 Screencast" /></a>
 
 
 ### Use Case 2 - Change Data Capture to Cassandra
@@ -144,12 +141,12 @@ Update your pipeline or create a new pipeline especially for deletes.  Use the `
 In this case, simply update your StreamSets pipeline and Cassandra data model to remove the `created_at` and `operation_type` fields. An existing record in Cassandra will be updated (upsert).  The `cassandra_schema_no_history.cql` file has this model all ready for you.  Note: you'll need to address deletes or sdc.operation.type == 2 in your pipeline with this model.
 
 
-#### Source
+### Source
 
 https://github.com/tmcgrath/cassandra-ingest
 
 
-#### References
+### References
 
 [1] https://en.wikipedia.org/wiki/Change_data_capture
 
@@ -159,7 +156,7 @@ https://github.com/tmcgrath/cassandra-ingest
 
 
 
-##### Notes & Possible Improvement Ideas
+#### Notes & Possible Improvement Ideas
 
 * Docker container with all of this and maybe even using DataStax
 
