@@ -113,14 +113,9 @@ We chose the approach or logical updates and deletes.
 
 #### StreamSets Configuration
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=-yH0aMgAMhQ"><img src="images/cassandra-ingest-with-streamsets-part-4.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 4 Screencast" /></a>
+Let's review how this pipeline is configured in the following screencast
 
-
-// Import the pipeline
-// Link to mySQL CDC setup and other options
-// Show JDBC driver setup for mysql bin log
-// we went with retain history - see FAQ for more info
-
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=_3nOPu5sfkc"><img src="images/cassandra-ingest-with-streamsets-part-4.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 4 Screencast" /></a>
 
 
 #### FAQ
