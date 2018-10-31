@@ -72,7 +72,7 @@ Let's work backwards.  What does the end result of bulk loading into Cassandra f
 
 In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" width="240" height="180" border="10"/></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast"/></a>
 
 
 #### Key Deliverables
