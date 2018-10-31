@@ -1,4 +1,4 @@
-## Cassandra Ingest from Relational Databases with StreamSets
+## DataStax or Cassandra Ingest from Relational Databases with StreamSets
 
 How do you ingest from an existing relational database (RDBMS) to Cassandra?  
 
@@ -58,11 +58,9 @@ I'm assuming you know Killrvideo!  If not, just search for it.
 
 1. Cassandra or DataStax Enterprise (DSE).  Schema used is in the schema/cassandra_schema.cql file.
 
-2. RDBMS with JDBC driver such as Oracle, Microsft SQL Server, PostgreSQL or mySQL. // TODO provide dump. (this tutorial uses mySQL.  swap as necessary.)
+2. A RDBMS with a JDBC driver such as Oracle, Microsoft SQL Server, PostgreSQL or mySQL. // TODO provide dump. (this tutorial uses mySQL.)
 
 3. StreamSets Data Collector
-
-4. mySQL JDBC driver configured for StreamSets origins (shown in screencasts below)
 
 _Please note_: If you are new to StreamSets, you are encouraged to visit http://www.streamsets.com to learn more and complete the Basic Tutorials available at https://streamsets.com/tutorials/ before attempting this tutorial.
 
@@ -74,10 +72,8 @@ Let's work backwards.  What does the end result of bulk loading into Cassandra f
 
 In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
-// TODO Screencast link
-// bin/cqlsh -f ~/dev/cassandra-ingest/schema/cassandra_schema.cql
-// Show JDBC driver setup
-// Show History after the pipeline stops
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI" target="_blank"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" width="240" height="180" border="10"/></a>
+
 
 #### Key Deliverables
 
@@ -89,6 +85,7 @@ In this demonstration, we saw the ability to move from a data model appropriate 
 // TODO breakdown each stage - maybe a different video and reference links here.
 // Cassandra Destination call out Auth Provider and Protocol version options
 // JDBC Lookup is configured for caching
+// Show JDBC driver setup
 
 
 ### Use Case 2 - Change Data Capture to Cassandra
@@ -113,6 +110,7 @@ In this tutorial, we'll retain history.  See FAQ below for alternative.
 // TODO Screencast link
 // Import the pipeline
 // Show JDBC driver setup for mysql bin log
+// mysql setup for binlog.  Maybe mention links in the references section.
 
 #### Key Deliverables
 
@@ -146,6 +144,10 @@ Update your pipeline or create a new pipeline especially for deletes.  Use the `
 In this case, simply update your StreamSets pipeline and Cassandra data model to remove the `created_at` and `operation_type` fields. An existing record in Cassandra will be updated (upsert).  The `cassandra_schema_no_history.cql` file has this model all ready for you.  Note: you'll need to address deletes or sdc.operation.type == 2 in your pipeline with this model.
 
 
+#### Source
+
+https://github.com/tmcgrath/cassandra-ingest
+
 
 #### References
 
@@ -153,15 +155,16 @@ In this case, simply update your StreamSets pipeline and Cassandra data model to
 
 [2] https://streamsets.com/documentation/datacollector/3.4.0/help/datacollector/UserGuide/Pipeline_Design/CDC-Overview.html?hl=cdc
 
+[3] // TODO links for binlog setup
 
-.
+
 
 ##### Notes & Possible Improvement Ideas
 
 * Docker container with all of this and maybe even using DataStax
 
-* Use Oracle or some other source for both pipelines  
+* Different source example; i.e. use Oracle or some other source for both pipelines  
 
-* Implement a Stream Processor.  Example: 1 pipeline for batch and streaming cdc to Kafka and 1 pipeline from Kafka to Cassandra.
+* Implement a Stream Processor pipeline with Kafka, Pulsar or Kinesis.  Example: 1 pipeline for batch and streaming cdc pipelines to Kafka and 1 pipeline from Kafka to Cassandra.  
 
 * Others?

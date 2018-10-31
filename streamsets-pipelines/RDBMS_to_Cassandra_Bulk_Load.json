@@ -5,7 +5,7 @@
     "pipelineId" : "RDBMStoCassandraBulkLoada844286a-d0bc-4e49-98f8-cea9c2e2d444",
     "title" : "RDBMS_to_Cassandra_Bulk_Load",
     "description" : "",
-    "uuid" : "5b1829c9-c5b6-4408-92ad-43f169a82644",
+    "uuid" : "4d6024e5-1c26-4dda-ad1b-32ff744f2da7",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -863,8 +863,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Ratings",
-        "xPos" : 1583.374755859375,
-        "yPos" : 153.1619415283203,
+        "xPos" : 1587.3970947265625,
+        "yPos" : 131.7093048095703,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540845740169" ],
@@ -1027,8 +1027,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "No Tags",
-        "xPos" : 1584.6536865234375,
-        "yPos" : 483.48126220703125,
+        "xPos" : 1591.357666015625,
+        "yPos" : 464.710205078125,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845205815" ],
@@ -1256,8 +1256,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Users",
-        "xPos" : 1160,
-        "yPos" : 470,
+        "xPos" : 1170.364501953125,
+        "yPos" : 453.8774108886719,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "JDBCLookup_04OutputLane15408453914700" ],
@@ -1369,8 +1369,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movie Ratings By User",
-        "xPos" : 1580.817138671875,
-        "yPos" : 43.62371063232422,
+        "xPos" : 1584.839599609375,
+        "yPos" : 23.511859893798828,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_03OutputLane1540846631681" ],
@@ -1482,8 +1482,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movies By Tag table",
-        "xPos" : 1585.9324951171875,
-        "yPos" : 261.4033203125,
+        "xPos" : 1587.2733154296875,
+        "yPos" : 242.6322479248047,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1595,8 +1595,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Insert into Movie Tags by User",
-        "xPos" : 1587.21142578125,
-        "yPos" : 371.7586364746094,
+        "xPos" : 1588.55224609375,
+        "yPos" : 354.328369140625,
         "stageType" : "TARGET"
       },
       "inputLanes" : [ "StreamSelector_02OutputLane1540845244681" ],
@@ -1621,7 +1621,7 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Stop Pipeline When Complete",
-        "xPos" : 280,
+        "xPos" : 281.1220703125,
         "yPos" : 200,
         "stageType" : "EXECUTOR"
       },
@@ -1653,11 +1653,11 @@
       "title" : "RDBMS_to_Cassandra_Bulk_Load",
       "description" : "",
       "created" : 1540826355514,
-      "lastModified" : 1540929372136,
+      "lastModified" : 1540993197677,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "5b1829c9-c5b6-4408-92ad-43f169a82644",
+      "uuid" : "4d6024e5-1c26-4dda-ad1b-32ff744f2da7",
       "valid" : true,
       "metadata" : {
         "labels" : [ "cassandra" ]
