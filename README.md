@@ -45,7 +45,7 @@ Before we begin, you might be wondering why I named it Killrmovies?  Yeah, I kno
 
 Killrmovies RDBMS data model is traditional, 3NF where normalization is paramount.
 
-// TODO diagram
+![Killrmoviews mysql](images/mysql-diagram.png)
 
 Conversely, when moving to Cassandra, the data model is based on known queries with denormalized data.  
 
