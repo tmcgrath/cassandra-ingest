@@ -51,7 +51,7 @@ Killrmovies RDBMS data model is traditional, 3NF where normalization is paramoun
 
 Conversely, when moving to Cassandra, the data model is based on known queries with denormalized data.  
 
-// TODO chebotko diagram    
+![Killrmoviews cassandra](images/cassandra-diagram.png)   
 
 We're leveraging a subset of Killrvideo because it's often used when introducing and teaching data modeling in DataStax and Cassandra.  And this especially relevant in this tutorial where we are taking an existing RDBMS based model and migrating to Cassandra.
 
