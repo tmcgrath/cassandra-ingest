@@ -8,7 +8,7 @@ What about a one-time batch load of historical data vs streaming changes?
 
 I know what some of you are thinking, write and deploy some code.  And maybe the code can utilize a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as expected.  
 
-Don't get me wrong, writing and deploying code makes much sense for some folks.  But for many others, writing and deploying custom code may require a significant time and resources.  
+Don't get me wrong, writing and deploying code makes much sense for some folks.  But for many others, writing and deploying custom code may require significant time and resources.  
 
 Are there any alternatives to custom code for Cassandra ingestion from a RDBMS?
 
