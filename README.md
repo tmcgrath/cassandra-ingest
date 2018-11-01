@@ -155,6 +155,10 @@ In this case, simply update your StreamSets pipeline and Cassandra data model to
 
 https://github.com/tmcgrath/cassandra-ingest
 
+RDBMS data model created with https://dbdiagram.io
+
+Cassandra/DataStax data model created with https://hackolade.com
+
 
 ### References
 
