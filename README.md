@@ -6,23 +6,25 @@ Or, how about ingesting from a RDBMS to a Kerberized DataStax cluster?
 
 What about a one-time batch load of historical data vs streaming changes?
 
-I know what some of you are thinking, write and deploy some code.  And maybe the code can utilize a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as you'd might expect.  
+I know what some of you are thinking, write and deploy some code.  And maybe the code can utilize a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as expected.  
 
-Don't get me wrong, writing code makes much sense for some folks.  But for many others, writing and deploying custom code may require a significant time and resources.  
+Don't get me wrong, writing and deploying code makes much sense for some folks.  But for many others, writing and deploying custom code may require a significant time and resources.  
 
-Are there any alternatives for Cassandra ingestion from a RDBMS?
+Are there any alternatives to custom code for Cassandra ingestion from a RDBMS?
 
 For example, are there any third party tools available which focus on data ingestion?  And if so, do they support Cassandra or DataStax from an RDBMS?  
 
-Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating from an existing RDBMS to DataStax or Cassandra.
+Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  
+
+In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating from an existing RDBMS to DataStax or Cassandra.
 
 ![Cassandra Ingest with StreamSets](images/cassandra-ingest-intro.gif)
 
-We're going to cover the both **_batch_** and **_streaming_** based data ingestion from RDBMS to Cassandra:
+We're going to cover the both **_batch_** and **_streaming_** based data ingestion from a RDBMS to Cassandra:
 
 * **Use Case 1**: Initial Bulk Load of historical RDBMS based data into Cassandra (batch)
 
-* **Use Case 2**: Change Data Capture (aka CDC) trickle feed from RDBMS to Cassandra to keep Cassandra updated (streaming)
+* **Use Case 2**: Change Data Capture (aka CDC) trickle feed from RDBMS to Cassandra to keep Cassandra updated in near real-time (streaming)
 
 #### Why this matters?
 
@@ -30,7 +32,7 @@ We're going to cover the both **_batch_** and **_streaming_** based data ingesti
 
 * Build confidence in your Cassandra data models and operations using real-world data
 
-* Switch-over from RDBMS based environment to Cassandra with minimum downtown (in fact, no downtime is possible.  keep reading.)
+* Switch-over from a RDBMS based environment to Cassandra with minimum downtown (in fact, no downtime is possible.  keep reading.)
 
 * Utilize a tool built for data ingest, so you can focus on your business objectives which rely on Cassandra.  You're not in the data ingest business, right?  So why build something when you don't have to.  Prioritize.
 
@@ -72,7 +74,7 @@ _Please note_: If you are new to StreamSets, you are encouraged to visit http://
 
 Let's work backwards.  What does the end result of bulk loading into Cassandra from a RDBMS with StreamSets look like?
 
-In the following screencast, I demonstrate how to run provided StreamSets pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
+In the following screencast, I demonstrate how to run the provided StreamSets bulk load pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=jGj1yGxmHdI"><img src="images/cassandra-ingest-with-streamsets-part-1.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 1 Screencast" /></a>
 
