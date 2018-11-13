@@ -1,20 +1,20 @@
 ## DataStax or Cassandra Ingest from Relational Databases with StreamSets
 
-How do you ingest from an existing relational database (RDBMS) to Cassandra?  
+_How do you ingest from an existing relational database (RDBMS) to Cassandra?_  
 
-Or, how about ingesting from a RDBMS to a Kerberized DataStax cluster?  
+_Or, how about ingesting from a RDBMS to a Kerberized DataStax cluster?_  
 
-What about a one-time batch load of historical data vs streaming changes?
+_What about a one-time batch load of historical data vs streaming changes?_
 
 I know what some of you are thinking, write and deploy some code.  And maybe the code can utilize a framework like Apache Spark.  That's what I would have thought a few years ago. But, it often turns out that's not as easy as expected.  
 
-Don't get me wrong, writing and deploying code makes much sense for some folks.  But for many others, writing and deploying custom code may require significant time and resources.  
+Don't get me wrong, writing and deploying code makes sense for some folks.  But for many others, writing and deploying custom code may require significant time and resources.  
 
-Are there any alternatives to custom code for Cassandra ingestion from a RDBMS?
+_Are there any alternatives to custom code for Cassandra ingestion from a RDBMS?_
 
-For example, are there any third party tools available which focus on data ingestion?  And if so, do they support Cassandra or DataStax from an RDBMS?  
+_For example, are there any third party tools available which focus on data ingestion?  And if so, do they support Cassandra or DataStax from an RDBMS?_  
 
-Yes and Yes with StreamSets Data Collector or StreamSets Control Hub.  
+**Yes and Yes with StreamSets.**
 
 In this tutorial, we'll explore how you can use the open source StreamSets Data Collector for migrating from an existing RDBMS to DataStax or Cassandra.
 
@@ -87,7 +87,7 @@ In the demonstration, we saw the ability to move from a data model appropriate f
 
 #### StreamSets configuration
 
-How should we configure StreamSets for this bulk load use case?
+_How should we configure StreamSets for this bulk load use case?_
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=msFiD2OidOs"><img src="images/cassandra-ingest-with-streamsets-part-2.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 2 Screencast" /></a>
 
@@ -134,7 +134,7 @@ In this tutorial, you saw how to batch load and stream changes from a RDBMS to C
 
 #### FAQ
 
-1. What if my RDBMS has too many tables to address in a StreamSets pipeline or I want to organize into multiple pipelines?
+_1. What if my RDBMS has too many tables to address in a StreamSets pipeline or I want to organize into multiple pipelines?_
 
 __Solution__ Break up into multiple pipelines and filter accordingly.  You can filter in both the Bulk Ingest pipeline as well as the CDC origin pipeline:
 
@@ -142,11 +142,11 @@ To filter in `JDBC Multitable` origin, configure the `Tables` tab.  This tutoria
 
 To filter in `mySQL bin log` CDC origin, look in the `Advanced` tab, in the `Include Tables` and `Ignore Tables` config options.
 
-2. What if I want to perform physical deletes vs. logical?
+_2. What if I want to perform physical deletes vs. logical?_
 
 Update your pipeline or create a new pipeline especially for deletes.  Use the `JDBC Executor` or `JDBC Producer` stage configured with a Cassandra JDBC driver to issue the dynamically constructed `delete` queries.
 
-3. What if I want to perform physical updates vs. logical?
+_3. What if I want to perform physical updates vs. logical?_
 
 In this case, simply update your StreamSets pipeline and Cassandra data model to remove the `created_at` and `operation_type` fields. An existing record in Cassandra will be updated (upsert).  The `cassandra_schema_no_history.cql` file has this model all ready for you.  Note: you'll need to address deletes or sdc.operation.type == 2 in your pipeline with this model.
 
