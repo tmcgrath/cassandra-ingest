@@ -72,7 +72,7 @@ _Please note_: If you are new to StreamSets, you are encouraged to visit http://
 
 ### Use Case 1 - Bulk Loading Cassandra from RDBMS
 
-Let's work backwards.  What does the end result of bulk loading into Cassandra from a RDBMS with StreamSets look like?
+Let's work backwards.  _What does the end result of bulk loading into Cassandra from a RDBMS with StreamSets look like?_
 
 In the following screencast, I demonstrate how to run the provided StreamSets bulk load pipeline.  Along the way, we'll review the before and after state of the mySQL database and Cassandra.
 
@@ -110,7 +110,7 @@ You have options. In this tutorial, we're going to implement the logical instead
 
 In the logical approach, we will be retaining a history of source mutations. See FAQ section below for alternatives.
 
-Let's take a look at example
+Let's take a look at an example
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=-yH0aMgAMhQ"><img src="images/cassandra-ingest-with-streamsets-part-3.png" alt="Cassandra Ingest from RDBMS with StreamSets Part 3 Screencast" /></a>
 
