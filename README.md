@@ -20,7 +20,7 @@ In this tutorial, we'll explore how you can use the open source StreamSets Data 
 
 ![Cassandra Ingest with StreamSets](images/cassandra-ingest-intro.gif)
 
-We're going to cover the both **_batch_** and **_streaming_** based data ingestion from a RDBMS to Cassandra:
+We're going to cover both **_batch_** and **_streaming_** based data ingestion from a RDBMS to Cassandra:
 
 * **Use Case 1**: Initial Bulk Load of historical RDBMS based data into Cassandra (batch)
 
