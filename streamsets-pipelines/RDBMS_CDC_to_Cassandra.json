@@ -204,10 +204,10 @@
         "value" : "3306"
       }, {
         "name" : "config.username",
-        "value" : "ss"
+        "value" : "${USER_TEST_ONLY}"
       }, {
         "name" : "config.password",
-        "value" : "ss"
+        "value" : "${PW_TEST_ONLY}"
       }, {
         "name" : "config.serverId",
         "value" : "999"
